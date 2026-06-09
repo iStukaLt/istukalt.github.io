@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iStukaLt Agency — Digital Products & Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --rust: #c45c2e;
+    --slate: #1a1a2e;
+    --mid: #2a2a3e;
+    --glass: rgba(201,168,76,0.07);
+    --border: rgba(201,168,76,0.18);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--white); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav ul a {
+    color: rgba(245,240,232,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  nav ul a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    transition: background 0.3s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(ellipse, rgba(196,92,46,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-text { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--gold);
+    position: relative;
+  }
+
+  h1 em::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    animation: lineIn 0.6s 0.9s ease forwards;
+  }
+
+  @keyframes lineIn { to { transform: scaleX(1); } }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.6);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .agency-card {
+    background: var(--mid);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    width: 360px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .agency-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rust), var(--gold), var(--gold-light));
+  }
+
+  .card-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .card-price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .card-price span { font-size: 0.9rem; font-weight: 400; color: rgba(245,240,232,0.4); }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .card-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 0.8rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    transition: background 0.2s;
+  }
+
+  .card-btn:hover { background: var(--gold-light); }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat {
+    padding: 2.5rem 3rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.6s ease;
+  }
+
+  .stat:hover::before { width: 100%; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 3rem; }
+
+  .section-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: rgba(245,240,232,0.55);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* PRODUCTS */
+  .products { background: var(--slate); }
+
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .product-card {
+    background: var(--slate);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  .product-card:hover { background: var(--mid); }
+
+  .product-card::after {
+    content: '→';
+    position: absolute;
+    top: 2rem; right: 2rem;
+    font-size: 1.2rem;
+    color: var(--gold);
+    opacity: 0;
+    transform: translate(-6px, 6px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .product-card:hover::after { opacity: 1; transform: translate(0, 0); }
+
+  .product-icon {
+    width: 48px; height: 48px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-cat {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .product-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .product-desc {
+    font-size: 0.83rem;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--gold);
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3.5rem;
+  }
+
+  .service-item {
+    background: var(--black);
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    transition: background 0.3s;
+  }
+
+  .service-item:hover { background: rgba(26,26,46,0.8); }
+
+  .service-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    padding-top: 0.2rem;
+  }
+
+  .service-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-desc {
+    font-size: 0.83rem;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.6;
+  }
+
+  /* LANGUAGES */
+  .lang-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: var(--mid);
+    overflow: hidden;
+  }
+
+  .lang-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .lang-items {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .lang-item {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .lang-dot {
+    width: 5px; height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--slate) 0%, var(--mid) 50%, var(--slate) 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 7rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-section .section-tag { justify-content: center; }
+  .cta-section .section-sub { margin: 0 auto 2.5rem; }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* LINKS */
+  .links-section { background: var(--slate); }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .link-card {
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.8rem;
+    text-decoration: none;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .link-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+  .link-icon {
+    width: 44px; height: 44px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .link-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .link-url {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 0.02em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.3);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    color: rgba(245,240,232,0.4);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    background: var(--gold);
+  }
+
+  .marquee {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+
+  .marquee span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+
+  .marquee-sep { color: var(--rust) !important; }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
+    .hero-visual { display: none; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 1.8rem; }
+    .products-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .links-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.5rem; }
+    .products-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    footer { grid-template-columns: 1fr; }
+    .footer-links { flex-wrap: wrap; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">iStukaLt<span>.</span></a>
+  <ul>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#links">Links</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Digital Agency · Est. 2026</div>
+    <h1>Where <em>Ideas</em><br>Become<br>Digital Assets</h1>
+    <p class="hero-sub">iStukaLt Agency creates, produces and distributes premium digital products — E-books, templates, AI tools, courses and software. We also handle your online presence — social media, blogs and Google updates. <strong style="color:var(--gold)">From $299/month. No contracts.</strong></p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Browse Products</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="agency-card">
+      <div class="card-label">Featured Product</div>
+      <div class="card-title">AI Business Starter Kit</div>
+      <div class="card-desc">Complete toolkit for launching & scaling your business with AI tools, templates & strategy guides.</div>
+      <div class="card-price">$47 <span>/ one-time</span></div>
+      <div class="card-tags">
+        <span class="tag">AI Tools</span>
+        <span class="tag">Templates</span>
+        <span class="tag">E-book</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://payhip.com/b/YTLRE','_blank')">GET THIS PRODUCT →</button>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>E-Books</span><span class="marquee-sep">✦</span>
+    <span>AI Templates</span><span class="marquee-sep">✦</span>
+    <span>Online Courses</span><span class="marquee-sep">✦</span>
+    <span>Software Tools</span><span class="marquee-sep">✦</span>
+    <span>Business Kits</span><span class="marquee-sep">✦</span>
+    <span>Design Assets</span><span class="marquee-sep">✦</span>
+    <span>Marketing Packs</span><span class="marquee-sep">✦</span>
+    <span>iStukaLt Agency</span><span class="marquee-sep">✦</span>
+    <span>E-Books</span><span class="marquee-sep">✦</span>
+    <span>AI Templates</span><span class="marquee-sep">✦</span>
+    <span>Online Courses</span><span class="marquee-sep">✦</span>
+    <span>Software Tools</span><span class="marquee-sep">✦</span>
+    <span>Business Kits</span><span class="marquee-sep">✦</span>
+    <span>Design Assets</span><span class="marquee-sep">✦</span>
+    <span>Marketing Packs</span><span class="marquee-sep">✦</span>
+    <span>iStukaLt Agency</span><span class="marquee-sep">✦</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">5+</div>
+    <div class="stat-label">Product Categories</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Languages</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Digital Delivery</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Downloads / License</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <div>
+      <div class="section-tag">Digital Products</div>
+      <h2 class="section-title">Premium Assets<br>Ready to Deploy</h2>
+    </div>
+    <a href="https://payhip.com/IStukaLtonline" target="_blank" class="btn-outline" style="white-space:nowrap;">View All on Payhip →</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-icon">📘</div>
+      <div class="product-cat">E-Book · PDF</div>
+      <div class="product-name">Entrepreneurship Blueprint</div>
+      <div class="product-desc">Step-by-step guide to launching a profitable business from scratch. Includes worksheets & checklists.</div>
+      <div class="product-price">$19</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🤖</div>
+      <div class="product-cat">Tech · AI Tools</div>
+      <div class="product-name">AI Productivity Pack</div>
+      <div class="product-desc">Curated prompt library + AI workflow templates for entrepreneurs, creators and marketers.</div>
+      <div class="product-price">$29</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🎨</div>
+      <div class="product-cat">Design · Templates</div>
+      <div class="product-name">Brand Identity Kit</div>
+      <div class="product-desc">Professional Canva & Figma templates for building a cohesive brand identity from day one.</div>
+      <div class="product-price">$39</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🎓</div>
+      <div class="product-cat">Course · Video</div>
+      <div class="product-name">Digital Marketing Masterclass</div>
+      <div class="product-desc">Full video course covering social media, email marketing, SEO and paid ads for beginners.</div>
+      <div class="product-price">$97</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">📊</div>
+      <div class="product-cat">Software · Tools</div>
+      <div class="product-name">Business Dashboard Pro</div>
+      <div class="product-desc">Notion + Airtable system for tracking revenue, clients, tasks and growth metrics all in one place.</div>
+      <div class="product-price">$47</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">💡</div>
+      <div class="product-cat">Bundle · All-in-One</div>
+      <div class="product-name">iStukaLt Starter Bundle</div>
+      <div class="product-desc">All 5 core products in one bundle. Everything you need to launch, brand and grow your business.</div>
+      <div class="product-price">$147</div>
+    </div>
+  </div>
+</section>
+
+<!-- LANG STRIP -->
+<div class="lang-strip">
+  <div class="lang-label">Available In</div>
+  <div class="lang-items">
+    <div class="lang-item"><div class="lang-dot"></div> English</div>
+    <div class="lang-item"><div class="lang-dot"></div> + Second Language (configure in settings)</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">What We Do</div>
+  <h2 class="section-title">End-to-End Digital<br>Operations</h2>
+  <p class="section-sub">From production to distribution — iStukaLt Agency handles the full digital product lifecycle.</p>
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-num">01</div>
+      <div>
+        <div class="service-name">Product Creation</div>
+        <div class="service-desc">We build e-books, PDF guides, video courses, templates and software tools tailored to your niche and audience.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">02</div>
+      <div>
+        <div class="service-name">Store Operations</div>
+        <div class="service-desc">Full Payhip store setup — product listings, pricing strategy, checkout optimization and digital delivery.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">03</div>
+      <div>
+        <div class="service-name">Marketing & Funnels</div>
+        <div class="service-desc">Landing pages, email sequences, social media content and ad creatives that convert visitors into buyers.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">04</div>
+      <div>
+        <div class="service-name">AI-Powered Growth</div>
+        <div class="service-desc">Leverage cutting-edge AI tools for content creation, customer research, pricing optimization and automation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-tag">Start Today</div>
+  <h2 class="section-title">Ready to Build Your<br>Digital Empire?</h2>
+  <p class="section-sub">Join iStukaLt Agency and turn your knowledge into premium digital products that sell while you sleep.</p>
+  <div class="cta-actions">
+    <a href="https://payhip.com/IStukaLtonline" target="_blank" class="btn-primary">Shop on Payhip →</a>
+    <a href="mailto:iStukaLT@gmail.com" class="btn-outline">Contact Us</a>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section class="links-section" id="links">
+  <div class="section-tag">Find Us</div>
+  <h2 class="section-title">All Our Links</h2>
+  <p class="section-sub">Connect with iStukaLt Agency across platforms.</p>
+  <div class="links-grid">
+    <a href="https://payhip.com/b/YTLRE" target="_blank" class="link-card">
+      <div class="link-icon">🛒</div>
+      <div>
+        <div class="link-name">Shop — The Clarity Collection</div>
+        <div class="link-url">payhip.com/b/YTLRE · $39</div>
+      </div>
+    </a>
+    <a href="mailto:iStukaLT@gmail.com" class="link-card">
+      <div class="link-icon">📧</div>
+      <div>
+        <div class="link-name">Email Us</div>
+        <div class="link-url">iStukaLT@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://www.instagram.com/istukalt_agency" target="_blank" class="link-card">
+      <div class="link-icon">📱</div>
+      <div>
+        <div class="link-name">Instagram</div>
+        <div class="link-url">@istukalt_agency</div>
+      </div>
+    </a>
+    <a href="https://www.youtube.com/@iStukaLt" target="_blank" class="link-card">
+      <div class="link-icon">▶️</div>
+      <div>
+        <div class="link-name">YouTube</div>
+        <div class="link-url">youtube.com/@iStukaLt</div>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/istukalt-online-645263414" target="_blank" class="link-card">
+      <div class="link-icon">💼</div>
+      <div>
+        <div class="link-name">LinkedIn</div>
+        <div class="link-url">istuka Agency · Cape Town</div>
+      </div>
+    </a>
+    <a href="https://istukaltonline.carrd.co" target="_blank" class="link-card">
+      <div class="link-icon">🌐</div>
+      <div>
+        <div class="link-name">Carrd Website</div>
+        <div class="link-url">istukaltonline.carrd.co</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">iStukaLt Agency</div>
+    <div class="footer-copy">© 2026 iStukaLt Agency · Cape Town, South Africa · From $299/month · No contracts · iStukaLT@gmail.com</div>
+  </div>
+  <div class="footer-links">
+    <a href="#products">Products</a>
+    <a href="#services">Services</a>
+    <a href="#links">Links</a>
+    <a href="mailto:iStukaLT@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
